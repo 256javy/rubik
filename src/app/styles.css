@@ -1023,3 +1023,56 @@ footer {
 .settings-collapse[aria-expanded="true"] svg {
   transform: rotate(180deg);
 }
+
+/* Keep the activity close to the top on shorter screens. */
+.app-shell {
+  padding: 0 28px 20px;
+}
+.lesson-heading {
+  padding: 20px 0 18px;
+}
+.cube-viewport {
+  height: clamp(320px, 50vh, 460px);
+}
+.setting-row .toggle {
+  position: static;
+}
+@media (max-width: 800px) {
+  .app-shell {
+    padding: 0 20px 16px;
+  }
+}
+@media (max-width: 600px) {
+  .app-shell {
+    padding: 0 12px 16px;
+  }
+  .lesson-heading {
+    padding: 16px 0 14px;
+    gap: 12px;
+  }
+  .cube-viewport {
+    height: clamp(300px, 46vh, 370px);
+  }
+  .cube-viewport.dual {
+    height: 520px;
+  }
+  .manual-moves {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 360px) {
+  .lesson-heading {
+    flex-wrap: wrap;
+  }
+  .stage-progress {
+    flex-direction: row;
+    align-items: center;
+    padding-top: 0;
+  }
+  .setting-row {
+    gap: 8px;
+  }
+  .settings-content {
+    padding: 0 12px 14px;
+  }
+}

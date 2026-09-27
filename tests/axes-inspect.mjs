@@ -11,6 +11,7 @@ const page = await browser.newPage({
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 await page.goto("http://localhost:5173");
+await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
 await page.getByText("Ayudas visuales", { exact: true }).click();
 await page.getByRole("button", { name: "Mostrar ejes", exact: true }).click();
 await page.getByText("Orientación", { exact: true }).click();

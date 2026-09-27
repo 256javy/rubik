@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useLayoutEffect, useMemo } from "react";
 import {
-  Box,
   Shuffle,
   RotateCcw,
   Focus,
@@ -74,7 +73,7 @@ export default function App() {
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
   const [dual, setDual] = useState(saved?.dual ?? false);
-  const [settingsCollapsed, setSettingsCollapsed] = useState(false);
+  const [settingsCollapsed, setSettingsCollapsed] = useState(true);
   const [cameraStyle, setCameraStyle] = useState<"follow" | "stage">(
     saved?.cameraStyle ?? "follow",
   );
@@ -553,34 +552,17 @@ export default function App() {
   );
   return (
     <div className="app-shell">
-      <header className="site-header">
-        <a className="brand" href="/" aria-label="Rubik, inicio">
-          <Box size={27} strokeWidth={1.6} />
-          <span>
-            rubik<span className="brand-dot">.</span>
-          </span>
-        </a>
-        <span className="header-description">Aprende pieza a pieza</span>
-        <a
-          className="source-link"
-          href="https://www.youtube.com/watch?v=GyY0OxDk5lI"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Tutorial de referencia <ArrowRight size={14} />
-        </a>
-      </header>
       <main>
         <section className="lesson-heading">
           <div>
             <p className="step-label">
-              {active ? `Paso ${stage + 1} de 7` : "Tu primera vuelta"}
+              {active ? `Paso ${stage + 1} de 7` : "Práctica libre"}
             </p>
-            <h1>{active ? current.title : "Entiende el cubo."}</h1>
+            <h1>{active ? current.title : "Cubo de Rubik"}</h1>
             <p className="subtitle">
               {active
                 ? current.description
-                : "Sigue una pieza, descubre su lugar y aprende qué cambia con cada giro."}
+                : "Explora los giros o mezcla el cubo para empezar el tutorial."}
             </p>
           </div>
           {active && (
@@ -614,7 +596,7 @@ export default function App() {
                       ? "Sigue las cuatro aristas amarillas"
                       : "Sigue las cuatro esquinas amarillas"
                     : `Encuentra la ${target?.type === "corner" ? "esquina" : "arista"} ${target ? pieceLabel(target) : "objetivo"}`
-                : "Un cubo. Seis caras. Un movimiento a la vez."}
+                : "Giros libres"}
             </span>
           </div>
           <Cube3D
@@ -690,7 +672,6 @@ export default function App() {
           <header>
             <div>
               <h2>Ajustes del cubo</h2>
-              <p>Personaliza cómo miras y aprendes.</p>
             </div>
             <button
               className="settings-collapse"
@@ -1301,12 +1282,6 @@ export default function App() {
           </details>
         )}
       </main>
-      <footer>
-        <span>El objetivo es comprender cada movimiento.</span>
-        <span>
-          U arriba · D abajo · L izquierda · R derecha · F frente · B atrás
-        </span>
-      </footer>
     </div>
   );
 }

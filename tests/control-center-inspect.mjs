@@ -5,15 +5,21 @@ const browser = await chromium.launch({
 });
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 await page.goto("http://localhost:4173");
+await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
 await page.getByRole("button", { name: "Colapsar ajustes del cubo" }).click();
-await expect(page.getByRole("heading", { name: "Ajustes del cubo" })).toBeVisible();
-await expect(page.getByText("Ayudas visuales", { exact: true })).not.toBeVisible();
+await expect(
+  page.getByRole("heading", { name: "Ajustes del cubo" }),
+).toBeVisible();
+await expect(
+  page.getByText("Ayudas visuales", { exact: true }),
+).not.toBeVisible();
 await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
 await page.getByText("Ayudas visuales", { exact: true }).click();
 await expect(page.locator(".settings-section[open]")).toHaveCount(1);
 await page.getByRole("button", { name: "Destacar objetivo" }).click();
 await page.getByRole("button", { name: "Atenuar otras piezas" }).click();
 await page.reload();
+await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
 await page.getByText("Ayudas visuales", { exact: true }).click();
 await expect(
   page.getByRole("button", { name: "Destacar objetivo" }),

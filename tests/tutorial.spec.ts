@@ -4,6 +4,7 @@ async function inspectState(page: Page) {
 }
 async function prepare(page: Page) {
   await page.goto("/");
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await page.getByText("Herramientas de desarrollo", { exact: true }).click();
   await page
     .getByLabel("Inspeccionar identidades, posiciones y orientación")
@@ -220,6 +221,7 @@ test("pause finishes only the active turn and resume completes the demonstration
 }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await page.getByText("Herramientas de desarrollo", { exact: true }).click();
   await page.getByLabel("Notación", { exact: true }).fill("R U R' U'");
   await page
@@ -242,6 +244,7 @@ test("primary action prepares and plays directly; notices never move the transpo
   page,
 }) => {
   await page.goto("/");
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await page.getByText("Herramientas de desarrollo", { exact: true }).click();
   await page.getByLabel("Notación", { exact: true }).fill("R' D' R D");
   await page
@@ -278,6 +281,7 @@ test("primary action prepares and plays directly; notices never move the transpo
 
 test("R2 plays as two independently navigable R turns", async ({ page }) => {
   await page.goto("/");
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await page.getByText("Herramientas de desarrollo", { exact: true }).click();
   await page
     .getByLabel("Inspeccionar identidades, posiciones y orientación")
@@ -330,6 +334,7 @@ test("reload preserves progress, axes, reference, demonstration and undo/redo", 
   const tokens = await page.locator(".move-tokens button").allTextContents();
   const cursor = await page.locator(".timeline>span").innerText();
   await page.reload();
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await expect(
     page.getByRole("heading", { name: "La cruz blanca", level: 1 }),
   ).toBeVisible();
@@ -456,6 +461,7 @@ test("explore before scrambling with buttons and keyboard without intercepting i
   page,
 }) => {
   await page.goto("/");
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await page.getByText("Herramientas de desarrollo", { exact: true }).click();
   await page
     .getByLabel("Inspeccionar identidades, posiciones y orientación")
@@ -499,6 +505,7 @@ test("explore before scrambling with buttons and keyboard without intercepting i
   await page.locator(".debug-content input").first().fill("R U");
   expect(await inspectState(page)).toEqual(original);
   await page.reload();
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await expect(page.locator(".manual-controls")).toBeVisible();
 });
 
@@ -525,6 +532,7 @@ test("camera control is centralized and its preference survives reload without m
   await center.getByRole("button", { name: "Cámara automática" }).click();
   expect(await inspectState(page)).toEqual(original);
   await page.reload();
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await expect(
     center.getByRole("button", { name: "Cámara automática" }),
   ).toHaveAttribute("aria-pressed", "false");
@@ -559,6 +567,7 @@ test("fixed stage view places yellow above and persists through turns and reload
     "Vista fija de etapa",
   );
   await page.reload();
+  await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
   await expect(page.getByLabel("Modo de cámara")).toHaveValue("stage");
   await expect(page.locator(".view-label")).toContainText("amarillo arriba");
   await page

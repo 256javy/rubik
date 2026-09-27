@@ -14,6 +14,8 @@ npm run build
 npm run preview
 ```
 
+Sitio público: [rubik-vert.vercel.app](https://rubik-vert.vercel.app).
+
 ## Desplegar en Vercel
 
 La [documentación oficial de Vercel para Vite](https://vercel.com/docs/frameworks/frontend/vite) describe el despliegue de este tipo de aplicación. Importa este repositorio en Vercel y selecciona el preset **Vite**. La configuración está incluida en `vercel.json`:
@@ -24,7 +26,7 @@ La [documentación oficial de Vercel para Vite](https://vercel.com/docs/framewor
 - Node.js: 24.x
 - No requiere variables de entorno, servidor ni base de datos.
 
-También puedes ejecutar `npx vercel` desde este directorio para crear un despliegue de prueba y `npx vercel --prod` para publicar, después de vincularlo a tu cuenta y proyecto. Este repositorio no incluye credenciales ni está vinculado a un proyecto de Vercel.
+También puedes ejecutar `npx vercel` desde este directorio para crear un despliegue de prueba y `npx vercel --prod` para publicar, después de vincularlo a tu cuenta y proyecto. Este repositorio no incluye credenciales. El proyecto de Vercel se llama `rubik` y utiliza Node.js 24.x. Para activar despliegues automáticos, instala la integración de Vercel en GitHub con acceso a `256javy/rubik` y conecta el repositorio en Settings → Git. La rama de producción es `main`; las otras ramas generan previews.
 
 Los movimientos, la búsqueda y el estado se ejecutan en el navegador. El progreso se guarda automáticamente en localStorage del mismo navegador y origen (la dirección del sitio). Al recargar se recuperan el estado, la etapa, el historial, el recorrido pendiente, la referencia de notación y las preferencias. La reproducción se reanuda pausada desde el último giro confirmado; una mezcla se guarda al finalizar. Si el almacenamiento falla, se muestra un aviso y se permite continuar. Los datos inválidos o de una versión incompatible se ignoran. Se necesita WebGL. Las fuentes se sirven con la aplicación, sin peticiones a Google Fonts. Las herramientas de desarrollo se eliminan del build de producción.
 

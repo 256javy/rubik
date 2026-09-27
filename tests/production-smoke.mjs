@@ -32,6 +32,7 @@ await page.screenshot({
   fullPage: true,
 });
 await page.setViewportSize({ width: 390, height: 844 });
+await page.getByRole("button", { name: "Expandir ajustes del cubo" }).click();
 await page.getByRole("button", { name: "Perspectiva doble" }).click();
 await page.screenshot({
   path: "artifacts/production-mobile.png",
